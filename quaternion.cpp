@@ -941,8 +941,8 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_10quaternion_PyQuaternion;
 
-/* "quaternion.pyx":9
- *         Quaternion(float,float,float,float)
+/* "quaternion.pyx":10
+ *         float dot(const Quaternion* q)
  * 
  * cdef class PyQuaternion:             # <<<<<<<<<<<<<<
  * 
@@ -1039,6 +1039,12 @@ static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_n
 static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
     PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
     const char* function_name);
+
+/* ArgTypeTest.proto */
+#define __Pyx_ArgTypeTest(obj, type, none_allowed, name, exact)\
+    ((likely((Py_TYPE(obj) == type) | (none_allowed && (obj == Py_None)))) ? 1 :\
+        __Pyx__ArgTypeTest(obj, type, name, exact))
+static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
 
 /* PyObjectCall.proto */
 #if CYTHON_COMPILING_IN_CPYTHON
@@ -1255,14 +1261,15 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1y___get__(struct __pyx_ob
 static int __pyx_pf_10quaternion_12PyQuaternion_1y_2__set__(struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
 static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1z___get__(struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self); /* proto */
 static int __pyx_pf_10quaternion_12PyQuaternion_1z_2__set__(struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, PyObject *__pyx_v_val); /* proto */
-static PyObject *__pyx_pf_10quaternion_12PyQuaternion_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_10quaternion_12PyQuaternion_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_10quaternion_12PyQuaternion_4dot(struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_q); /* proto */
+static PyObject *__pyx_pf_10quaternion_12PyQuaternion_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_10quaternion_12PyQuaternion_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_10quaternion_PyQuaternion(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 /* Late includes */
 
-/* "quaternion.pyx":13
+/* "quaternion.pyx":14
  *     cdef Quaternion *_thisptr
  * 
  *     def __cinit__(self, float _w, float _x, float _y, float _z):             # <<<<<<<<<<<<<<
@@ -1310,23 +1317,23 @@ static int __pyx_pw_10quaternion_12PyQuaternion_1__cinit__(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_x)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, 1); __PYX_ERR(0, 13, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, 1); __PYX_ERR(0, 14, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_y)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, 2); __PYX_ERR(0, 13, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, 2); __PYX_ERR(0, 14, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_z)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, 3); __PYX_ERR(0, 13, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, 3); __PYX_ERR(0, 14, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 13, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 14, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -1336,14 +1343,14 @@ static int __pyx_pw_10quaternion_12PyQuaternion_1__cinit__(PyObject *__pyx_v_sel
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
-    __pyx_v__w = __pyx_PyFloat_AsFloat(values[0]); if (unlikely((__pyx_v__w == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
-    __pyx_v__x = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v__x == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
-    __pyx_v__y = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__y == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
-    __pyx_v__z = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v__z == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
+    __pyx_v__w = __pyx_PyFloat_AsFloat(values[0]); if (unlikely((__pyx_v__w == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+    __pyx_v__x = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v__x == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+    __pyx_v__y = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__y == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
+    __pyx_v__z = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v__z == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 13, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 14, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("quaternion.PyQuaternion.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1365,7 +1372,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion___cinit__(struct __pyx_obj_10qua
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "quaternion.pyx":14
+  /* "quaternion.pyx":15
  * 
  *     def __cinit__(self, float _w, float _x, float _y, float _z):
  *         self._thisptr = new Quaternion(_w, _x, _y, _z)             # <<<<<<<<<<<<<<
@@ -1374,7 +1381,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion___cinit__(struct __pyx_obj_10qua
  */
   __pyx_v_self->_thisptr = new Quaternion(__pyx_v__w, __pyx_v__x, __pyx_v__y, __pyx_v__z);
 
-  /* "quaternion.pyx":15
+  /* "quaternion.pyx":16
  *     def __cinit__(self, float _w, float _x, float _y, float _z):
  *         self._thisptr = new Quaternion(_w, _x, _y, _z)
  *         if self._thisptr == NULL:             # <<<<<<<<<<<<<<
@@ -1384,16 +1391,16 @@ static int __pyx_pf_10quaternion_12PyQuaternion___cinit__(struct __pyx_obj_10qua
   __pyx_t_1 = ((__pyx_v_self->_thisptr == NULL) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "quaternion.pyx":16
+    /* "quaternion.pyx":17
  *         self._thisptr = new Quaternion(_w, _x, _y, _z)
  *         if self._thisptr == NULL:
  *             raise MemoryError()             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
-    PyErr_NoMemory(); __PYX_ERR(0, 16, __pyx_L1_error)
+    PyErr_NoMemory(); __PYX_ERR(0, 17, __pyx_L1_error)
 
-    /* "quaternion.pyx":15
+    /* "quaternion.pyx":16
  *     def __cinit__(self, float _w, float _x, float _y, float _z):
  *         self._thisptr = new Quaternion(_w, _x, _y, _z)
  *         if self._thisptr == NULL:             # <<<<<<<<<<<<<<
@@ -1402,7 +1409,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion___cinit__(struct __pyx_obj_10qua
  */
   }
 
-  /* "quaternion.pyx":13
+  /* "quaternion.pyx":14
  *     cdef Quaternion *_thisptr
  * 
  *     def __cinit__(self, float _w, float _x, float _y, float _z):             # <<<<<<<<<<<<<<
@@ -1421,7 +1428,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion___cinit__(struct __pyx_obj_10qua
   return __pyx_r;
 }
 
-/* "quaternion.pyx":18
+/* "quaternion.pyx":19
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1445,7 +1452,7 @@ static void __pyx_pf_10quaternion_12PyQuaternion_2__dealloc__(struct __pyx_obj_1
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "quaternion.pyx":19
+  /* "quaternion.pyx":20
  * 
  *     def __dealloc__(self):
  *         if self._thisptr != NULL:             # <<<<<<<<<<<<<<
@@ -1455,7 +1462,7 @@ static void __pyx_pf_10quaternion_12PyQuaternion_2__dealloc__(struct __pyx_obj_1
   __pyx_t_1 = ((__pyx_v_self->_thisptr != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "quaternion.pyx":20
+    /* "quaternion.pyx":21
  *     def __dealloc__(self):
  *         if self._thisptr != NULL:
  *             del self._thisptr             # <<<<<<<<<<<<<<
@@ -1464,7 +1471,7 @@ static void __pyx_pf_10quaternion_12PyQuaternion_2__dealloc__(struct __pyx_obj_1
  */
     delete __pyx_v_self->_thisptr;
 
-    /* "quaternion.pyx":19
+    /* "quaternion.pyx":20
  * 
  *     def __dealloc__(self):
  *         if self._thisptr != NULL:             # <<<<<<<<<<<<<<
@@ -1473,7 +1480,7 @@ static void __pyx_pf_10quaternion_12PyQuaternion_2__dealloc__(struct __pyx_obj_1
  */
   }
 
-  /* "quaternion.pyx":18
+  /* "quaternion.pyx":19
  *             raise MemoryError()
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1485,7 +1492,7 @@ static void __pyx_pf_10quaternion_12PyQuaternion_2__dealloc__(struct __pyx_obj_1
   __Pyx_RefNannyFinishContext();
 }
 
-/* "quaternion.pyx":23
+/* "quaternion.pyx":24
  * 
  *     @property
  *     def w(self):             # <<<<<<<<<<<<<<
@@ -1515,7 +1522,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1w___get__(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "quaternion.pyx":24
+  /* "quaternion.pyx":25
  *     @property
  *     def w(self):
  *         return self._thisptr.w             # <<<<<<<<<<<<<<
@@ -1523,13 +1530,13 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1w___get__(struct __pyx_ob
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->w); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->w); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "quaternion.pyx":23
+  /* "quaternion.pyx":24
  * 
  *     @property
  *     def w(self):             # <<<<<<<<<<<<<<
@@ -1548,7 +1555,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1w___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "quaternion.pyx":39
+/* "quaternion.pyx":40
  * 
  *     @w.setter
  *     def w(self, val):             # <<<<<<<<<<<<<<
@@ -1578,17 +1585,17 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1w_2__set__(struct __pyx_obj_10q
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "quaternion.pyx":40
+  /* "quaternion.pyx":41
  *     @w.setter
  *     def w(self, val):
  *         self._thisptr.w = val             # <<<<<<<<<<<<<<
  * 
  *     @x.setter
  */
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L1_error)
   __pyx_v_self->_thisptr->w = __pyx_t_1;
 
-  /* "quaternion.pyx":39
+  /* "quaternion.pyx":40
  * 
  *     @w.setter
  *     def w(self, val):             # <<<<<<<<<<<<<<
@@ -1607,7 +1614,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1w_2__set__(struct __pyx_obj_10q
   return __pyx_r;
 }
 
-/* "quaternion.pyx":27
+/* "quaternion.pyx":28
  * 
  *     @property
  *     def x(self):             # <<<<<<<<<<<<<<
@@ -1637,7 +1644,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1x___get__(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "quaternion.pyx":28
+  /* "quaternion.pyx":29
  *     @property
  *     def x(self):
  *         return self._thisptr.x             # <<<<<<<<<<<<<<
@@ -1645,13 +1652,13 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1x___get__(struct __pyx_ob
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "quaternion.pyx":27
+  /* "quaternion.pyx":28
  * 
  *     @property
  *     def x(self):             # <<<<<<<<<<<<<<
@@ -1670,7 +1677,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1x___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "quaternion.pyx":43
+/* "quaternion.pyx":44
  * 
  *     @x.setter
  *     def x(self, val):             # <<<<<<<<<<<<<<
@@ -1700,17 +1707,17 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1x_2__set__(struct __pyx_obj_10q
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "quaternion.pyx":44
+  /* "quaternion.pyx":45
  *     @x.setter
  *     def x(self, val):
  *         self._thisptr.x = val             # <<<<<<<<<<<<<<
  * 
  *     @y.setter
  */
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
   __pyx_v_self->_thisptr->x = __pyx_t_1;
 
-  /* "quaternion.pyx":43
+  /* "quaternion.pyx":44
  * 
  *     @x.setter
  *     def x(self, val):             # <<<<<<<<<<<<<<
@@ -1729,7 +1736,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1x_2__set__(struct __pyx_obj_10q
   return __pyx_r;
 }
 
-/* "quaternion.pyx":31
+/* "quaternion.pyx":32
  * 
  *     @property
  *     def y(self):             # <<<<<<<<<<<<<<
@@ -1759,7 +1766,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1y___get__(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "quaternion.pyx":32
+  /* "quaternion.pyx":33
  *     @property
  *     def y(self):
  *         return self._thisptr.y             # <<<<<<<<<<<<<<
@@ -1767,13 +1774,13 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1y___get__(struct __pyx_ob
  *     @property
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "quaternion.pyx":31
+  /* "quaternion.pyx":32
  * 
  *     @property
  *     def y(self):             # <<<<<<<<<<<<<<
@@ -1792,7 +1799,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1y___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "quaternion.pyx":47
+/* "quaternion.pyx":48
  * 
  *     @y.setter
  *     def y(self, val):             # <<<<<<<<<<<<<<
@@ -1822,17 +1829,17 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1y_2__set__(struct __pyx_obj_10q
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "quaternion.pyx":48
+  /* "quaternion.pyx":49
  *     @y.setter
  *     def y(self, val):
  *         self._thisptr.y = val             # <<<<<<<<<<<<<<
  * 
  *     @z.setter
  */
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L1_error)
   __pyx_v_self->_thisptr->y = __pyx_t_1;
 
-  /* "quaternion.pyx":47
+  /* "quaternion.pyx":48
  * 
  *     @y.setter
  *     def y(self, val):             # <<<<<<<<<<<<<<
@@ -1851,7 +1858,7 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1y_2__set__(struct __pyx_obj_10q
   return __pyx_r;
 }
 
-/* "quaternion.pyx":35
+/* "quaternion.pyx":36
  * 
  *     @property
  *     def z(self):             # <<<<<<<<<<<<<<
@@ -1881,7 +1888,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1z___get__(struct __pyx_ob
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "quaternion.pyx":36
+  /* "quaternion.pyx":37
  *     @property
  *     def z(self):
  *         return self._thisptr.z             # <<<<<<<<<<<<<<
@@ -1889,13 +1896,13 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1z___get__(struct __pyx_ob
  *     @w.setter
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "quaternion.pyx":35
+  /* "quaternion.pyx":36
  * 
  *     @property
  *     def z(self):             # <<<<<<<<<<<<<<
@@ -1914,7 +1921,7 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_1z___get__(struct __pyx_ob
   return __pyx_r;
 }
 
-/* "quaternion.pyx":51
+/* "quaternion.pyx":52
  * 
  *     @z.setter
  *     def z(self, val):             # <<<<<<<<<<<<<<
@@ -1944,17 +1951,17 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1z_2__set__(struct __pyx_obj_10q
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 0);
 
-  /* "quaternion.pyx":52
+  /* "quaternion.pyx":53
  *     @z.setter
  *     def z(self, val):
  *         self._thisptr.z = val             # <<<<<<<<<<<<<<
  * 
- * #cdef class RNG:
+ *     def dot(self, PyQuaternion q):
  */
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsFloat(__pyx_v_val); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
   __pyx_v_self->_thisptr->z = __pyx_t_1;
 
-  /* "quaternion.pyx":51
+  /* "quaternion.pyx":52
  * 
  *     @z.setter
  *     def z(self, val):             # <<<<<<<<<<<<<<
@@ -1973,6 +1980,77 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1z_2__set__(struct __pyx_obj_10q
   return __pyx_r;
 }
 
+/* "quaternion.pyx":55
+ *         self._thisptr.z = val
+ * 
+ *     def dot(self, PyQuaternion q):             # <<<<<<<<<<<<<<
+ *        return self._thisptr.dot(q._thisptr)
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_10quaternion_12PyQuaternion_5dot(PyObject *__pyx_v_self, PyObject *__pyx_v_q); /*proto*/
+static PyObject *__pyx_pw_10quaternion_12PyQuaternion_5dot(PyObject *__pyx_v_self, PyObject *__pyx_v_q) {
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("dot (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_q), __pyx_ptype_10quaternion_PyQuaternion, 1, "q", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_r = __pyx_pf_10quaternion_12PyQuaternion_4dot(((struct __pyx_obj_10quaternion_PyQuaternion *)__pyx_v_self), ((struct __pyx_obj_10quaternion_PyQuaternion *)__pyx_v_q));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_10quaternion_12PyQuaternion_4dot(struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_q) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("dot", 0);
+
+  /* "quaternion.pyx":56
+ * 
+ *     def dot(self, PyQuaternion q):
+ *        return self._thisptr.dot(q._thisptr)             # <<<<<<<<<<<<<<
+ * 
+ * #cdef class RNG:
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_thisptr->dot(__pyx_v_q->_thisptr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "quaternion.pyx":55
+ *         self._thisptr.z = val
+ * 
+ *     def dot(self, PyQuaternion q):             # <<<<<<<<<<<<<<
+ *        return self._thisptr.dot(q._thisptr)
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("quaternion.PyQuaternion.dot", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError("no default __reduce__ due to non-trivial __cinit__")
@@ -1980,19 +2058,19 @@ static int __pyx_pf_10quaternion_12PyQuaternion_1z_2__set__(struct __pyx_obj_10q
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10quaternion_12PyQuaternion_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_10quaternion_12PyQuaternion_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_10quaternion_12PyQuaternion_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_10quaternion_12PyQuaternion_7__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_10quaternion_12PyQuaternion_4__reduce_cython__(((struct __pyx_obj_10quaternion_PyQuaternion *)__pyx_v_self));
+  __pyx_r = __pyx_pf_10quaternion_12PyQuaternion_6__reduce_cython__(((struct __pyx_obj_10quaternion_PyQuaternion *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10quaternion_12PyQuaternion_4__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self) {
+static PyObject *__pyx_pf_10quaternion_12PyQuaternion_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2037,19 +2115,19 @@ static PyObject *__pyx_pf_10quaternion_12PyQuaternion_4__reduce_cython__(CYTHON_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_10quaternion_12PyQuaternion_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_10quaternion_12PyQuaternion_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_10quaternion_12PyQuaternion_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_10quaternion_12PyQuaternion_9__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_10quaternion_12PyQuaternion_6__setstate_cython__(((struct __pyx_obj_10quaternion_PyQuaternion *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_10quaternion_12PyQuaternion_8__setstate_cython__(((struct __pyx_obj_10quaternion_PyQuaternion *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_10quaternion_12PyQuaternion_6__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_10quaternion_12PyQuaternion_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_10quaternion_PyQuaternion *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2175,8 +2253,9 @@ static int __pyx_setprop_10quaternion_12PyQuaternion_z(PyObject *o, PyObject *v,
 }
 
 static PyMethodDef __pyx_methods_10quaternion_PyQuaternion[] = {
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_10quaternion_12PyQuaternion_5__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_10quaternion_12PyQuaternion_7__setstate_cython__, METH_O, 0},
+  {"dot", (PyCFunction)__pyx_pw_10quaternion_12PyQuaternion_5dot, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_10quaternion_12PyQuaternion_7__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_10quaternion_12PyQuaternion_9__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -2327,7 +2406,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 17, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -2409,15 +2488,15 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_10quaternion_PyQuaternion) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_10quaternion_PyQuaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_10quaternion_PyQuaternion.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_10quaternion_PyQuaternion.tp_dictoffset && __pyx_type_10quaternion_PyQuaternion.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_10quaternion_PyQuaternion.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyQuaternion, (PyObject *)&__pyx_type_10quaternion_PyQuaternion) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_10quaternion_PyQuaternion) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_PyQuaternion, (PyObject *)&__pyx_type_10quaternion_PyQuaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_10quaternion_PyQuaternion) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
   __pyx_ptype_10quaternion_PyQuaternion = &__pyx_type_10quaternion_PyQuaternion;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -2870,6 +2949,27 @@ invalid_keyword:
     #endif
 bad:
     return -1;
+}
+
+/* ArgTypeTest */
+static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact)
+{
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
+    }
+    else if (exact) {
+        #if PY_MAJOR_VERSION == 2
+        if ((type == &PyBaseString_Type) && likely(__Pyx_PyBaseString_CheckExact(obj))) return 1;
+        #endif
+    }
+    else {
+        if (likely(__Pyx_TypeCheck(obj, type))) return 1;
+    }
+    PyErr_Format(PyExc_TypeError,
+        "Argument '%.200s' has incorrect type (expected %.200s, got %.200s)",
+        name, type->tp_name, Py_TYPE(obj)->tp_name);
+    return 0;
 }
 
 /* PyObjectCall */

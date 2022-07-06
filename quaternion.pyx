@@ -5,6 +5,7 @@ cdef extern from "quaternion.h":
     cdef cppclass Quaternion:
         float w,x,y,z
         Quaternion(float,float,float,float)
+        float dot(const Quaternion* q)
 
 cdef class PyQuaternion:
 
@@ -50,6 +51,9 @@ cdef class PyQuaternion:
     @z.setter
     def z(self, val):
         self._thisptr.z = val
+
+    def dot(self, PyQuaternion q):
+       return self._thisptr.dot(q._thisptr)
 
 #cdef class RNG:
 
